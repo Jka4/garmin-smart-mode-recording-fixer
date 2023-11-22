@@ -1,20 +1,18 @@
 var fs = require('fs');
 const path = require('path');
 
-const addTrackPoint = require('./utils/tcxWriter.js').addTrackPoint;
-const writeTcx = require('./utils/tcxWriter.js').writeTcx;
-const Clean = require('./utils/tcxWriter.js').Clean;
-var FitParser = require('./utils/fit-parser.js').default;
+const addTrackPoint = require('./src/utils/tcxWriter.js').addTrackPoint;
+const writeTcx = require('./src/utils/tcxWriter.js').writeTcx;
+const Clean = require('./src/utils/tcxWriter.js').Clean;
+var FitParser = require('./src/utils/fit-parser.js').default;
 
-const inputPath = '../IN';
-console.log('🚀 ~ inputPath:', inputPath);
-const outputPath = '../OUT';
-console.log('🚀 ~ outputPath:', outputPath);
+const inputPath = './src/IN';
+const outputPath = './src/OUT';
 
 const directoryPath = path.join(__dirname, inputPath);
 
 const parse = (fileName) => {
-  const file = `./${inputPath}/` + fileName;
+  const file = `${inputPath}/` + fileName;
   const fileNameWithoutExtension = fileName.replace('.fit', '');
 
   if (!file) return;
@@ -101,8 +99,9 @@ const parse = (fileName) => {
 
         let result = writeTcx(sessions);
 
-        console.count();
         fs.writeFileSync(`./${outputPath}/${fileNameWithoutExtension}.tcx`, result);
+
+        console.count();
 
         newData = [];
         Clean();
@@ -120,6 +119,7 @@ fs.readdir(directoryPath, (err, files) => {
   try {
     files.forEach((file) => {
       if (!file.includes('.fit')) return;
+
       parse(file);
     });
   } catch (error) {

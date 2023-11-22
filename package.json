@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"start": "node index.js"
+	},
 	"dependencies": {
 		"@types/node": "^20.8.10",
 		"fit-file-parser": "^1.9.3",

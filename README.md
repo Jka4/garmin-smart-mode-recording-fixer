@@ -6,6 +6,7 @@ so file from `smart mode` become to `every second mode` and then for example int
 ## start
 
     > npm i
-    > node ./src/index.js
+    > put .fit files in src/IN
+    > npm run start
 
-after pocessing your fixed file will located in `OUT` folder
+after pocessing your fixed file will located in `src/OUT` folder
