@@ -35,7 +35,7 @@ const parse = (fileName) => {
         let newData = [];
 
         const records = data['records'];
-        const sport = data['sessions'][0].sport;
+        const sport = data['sessions'][0]?.sport || 'Other';
         const sportType = sport.includes('cycling') ? 'Biking' : sport.includes('running') ? 'Running' : 'Other';
 
         for (let index = 0; index < records.length; index++) {
